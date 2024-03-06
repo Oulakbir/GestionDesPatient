@@ -65,14 +65,12 @@ public class PatientController {
         return "redirect:/index?page"+page+"&keyword="+keyword;
     }
 
-
     @GetMapping("/editPatient")
     public String editPatient(Model model, Long id, String keyword, int page) {
         Patient patient = patientRepository.findById(id).orElse(null);
         if (patient == null) {
             throw new RuntimeException("patient introuvable");
         }
-
         model.addAttribute("patient", patient);
         model.addAttribute("page", page);
         model.addAttribute("keyword", keyword);
